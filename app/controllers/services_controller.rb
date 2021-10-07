@@ -1,3 +1,5 @@
+require 'date'
+
 class ServicesController < ApplicationController
 
     get "/services" do
@@ -11,10 +13,11 @@ class ServicesController < ApplicationController
     end
 
     post "/services" do
+        # datetime = params[:time].to_datetime
         service = Service.create(
             name = params[:name],
             description = params[:description],
-            time = Time.parse(params[:time]),
+            time = DateTime.strptime(params[:time], "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"),
             duration = params[:duration],
             price = params[:price],
             instructor = params[:instructor]
