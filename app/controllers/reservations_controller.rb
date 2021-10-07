@@ -5,7 +5,10 @@ class ReservationsController < ApplicationController
     end
 
     post "/reservations" do
-        reservation = Reservation.create(params)
+        reservation = Reservation.create(
+            client_id: params[:clientId],
+            service_id: params[:serviceId]
+        )
         reservation.to_json
     end
 

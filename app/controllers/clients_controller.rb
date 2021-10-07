@@ -5,11 +5,14 @@ class ClientsController < ApplicationController
     end
 
     post "/clients" do
-        client = Client.create(
-            first_name: params[:firstName],
-            last_name: params[:lastName],
-            email: params[:email]
-        )
+        # client = Client.create(
+        #     first_name: params[:firstName],
+        #     last_name: params[:lastName],
+        #     email: params[:email]
+        # )
+        client = Client.create_with(
+            first_name: params[:firstName], 
+            last_name: params[:lastName]).find_or_create_by(email: params[:email])
         client.to_json
     end
 
