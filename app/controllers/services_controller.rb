@@ -11,7 +11,15 @@ class ServicesController < ApplicationController
     end
 
     post "/services" do
-        service = Service.create(params)
+        service = Service.create(
+            name = params[:name],
+            description = params[:description],
+            time = Time.parse(params[:time]),
+            duration = params[:duration],
+            price = params[:price],
+            instructor = params[:instructor]
+        )
+        binding.pry
         service.to_json
     end
 
