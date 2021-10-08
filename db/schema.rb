@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_210940) do
+ActiveRecord::Schema.define(version: 2021_10_08_024155) do
 
   create_table "clients", force: :cascade do |t|
     t.string "first_name"
@@ -26,10 +26,11 @@ ActiveRecord::Schema.define(version: 2021_10_05_210940) do
   create_table "services", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.datetime "time"
+    t.string "time"
     t.integer "duration"
     t.integer "price"
     t.string "instructor"
+    t.string "date"
   end
 
 end

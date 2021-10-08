@@ -15,14 +15,14 @@ class ServicesController < ApplicationController
     post "/services" do
         # datetime = params[:time].to_datetime
         service = Service.create(
-            name = params[:name],
-            description = params[:description],
-            time = DateTime.strptime(params[:time], "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"),
-            duration = params[:duration],
-            price = params[:price],
-            instructor = params[:instructor]
+            name: params[:name],
+            description: params[:description],
+            date: params[:date],
+            time: params[:time],
+            duration: params[:duration].to_i,
+            price: params[:price].to_i,
+            instructor: params[:instructor]
         )
-        binding.pry
         service.to_json
     end
 
