@@ -24,7 +24,17 @@ class ClientsController < ApplicationController
 
     get "/clients/:id" do
         client = Client.find(params[:id])
-        client.to_json
+        client_json = client.as_json
+        services = client.services.all
+        servicesResId = services.map do |service|
+            service_json = service.as_json
+            res = service.reservations.find_by(client_id: client.id)
+            res_id = res.id
+            service_json[:res_id] = res_id
+            service_json
+        end
+        client_json[:services] = servicesResId
+        client_json.to_json
     end
 
     patch "/clients/:id" do
