@@ -1,7 +1,13 @@
 class ClientsController < ApplicationController
 
     get "/clients" do
-        Client.all.to_json
+        # Client.all.to_json
+        clients_array = Client.all.map do | client |
+            client_json = client.as_json
+            client_json[:service_count] = client.services.count
+            client_json
+        end
+        clients_array.to_json
     end
 
     post "/clients" do
